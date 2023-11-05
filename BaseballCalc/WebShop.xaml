@@ -1,0 +1,30 @@
+﻿<Window x:Class="BaseballCalc.WebShop"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BaseballCalc"
+        mc:Ignorable="d"
+        Title="WebShop" Height="450" Width="800"
+        WindowStyle="None">
+    <Grid>
+        <Grid.Background>
+            <VisualBrush TileMode="Tile" Viewport="0.8,2.8,0.09,0.15"  AlignmentX="Left" AlignmentY="Top">
+                <VisualBrush.Visual>
+                    <Image Source="Imgs/baseball.png"></Image>
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Grid.Background>
+        <Grid x:Name="Titlebar" Height="28" VerticalAlignment="Top" Background="#FF26268D" MouseDown="Titlebar_Drag">
+            <Label x:Name="Title" Content="BaseBall Project" HorizontalAlignment="Left" Width="166" Foreground="#FF519AFF" Cursor="Hand" FontFamily="Bodoni MT Black" FontSize="18" TextBlock.TextAlignment="Center" MouseDown="Homepage_Click"/>
+            <Button x:Name="Closebtn" Content="X" Margin="0,4,4,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="Closebtn_Click" HorizontalAlignment="Right" Width="29"/>
+            <Button x:Name="MiniMaxibtn" Content="◙" Margin="0,4,34,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="MiniMaxibtn_Click" HorizontalAlignment="Right" Width="29"/>
+            <Button x:Name="Minimizebtn" Content="-" Margin="0,4,64,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="Minimisebtn_Click" HorizontalAlignment="Right" Width="29"/>
+        </Grid>
+        <ComboBox Name="cb" IsEditable="True"  MouseEnter="Cb_OnMouseEnter" Margin="0,30,4,0" Grid.RowSpan="2" HorizontalAlignment="Right" Width="19" Height="18" VerticalAlignment="Top" SelectionChanged="cb_SelectionChanged">
+            <ComboBoxItem IsSelected="True">Blue</ComboBoxItem>
+            <ComboBoxItem>Gray</ComboBoxItem>
+        </ComboBox>
+
+    </Grid>
+</Window>

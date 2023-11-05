@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Imgs\baseball.png" />
+    <None Remove="Imgs\logo.png" />
+    <None Remove="Imgs\shop.png" />
+    <None Remove="Imgs\stats.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imgs\baseball.png" />
+    <Resource Include="Imgs\logo.png" />
+    <Resource Include="Imgs\shop.png" />
+    <Resource Include="Imgs\stats.png" />
+  </ItemGroup>
+
+</Project>
