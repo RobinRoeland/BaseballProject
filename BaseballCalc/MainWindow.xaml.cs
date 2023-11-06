@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaseballCalc.Classes;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,24 +19,24 @@ namespace BaseballCalc
 
         private void WebShopbtn_Click(object sender, RoutedEventArgs e)
         {
-            WebShop webShop = new WebShop();
+            WebShop webShop = new WebShop(this);
             webShop.Left = this.Left;
             webShop.Top = this.Top;
             webShop.WindowState = this.WindowState;
             webShop.cb.SelectedIndex = this.cb.SelectedIndex;
             webShop.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void Statsbtn_Click(object sender, RoutedEventArgs e)
         {
-            StatsPage statspage = new StatsPage();
+            StatsPage statspage = new StatsPage(this);
             statspage.Left = this.Left;
             statspage.Top = this.Top;
             statspage.WindowState = this.WindowState;
             statspage.cb.SelectedIndex = this.cb.SelectedIndex;
             statspage.Show();
-            this.Close();
+            this.Hide();
         }
 
         #region window buttons
@@ -83,7 +84,7 @@ namespace BaseballCalc
             if(typeItem.Content != null)
                 try
                 {
-                    string value = typeItem.Content.ToString();
+                    string? value = typeItem.Content.ToString();
                     switch (value)
                     {
                         case "Blue":

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaseballCalc.Classes;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,14 +12,18 @@ namespace BaseballCalc
     /// </summary>
     public partial class WebShop : Window
     {
-        public WebShop()
+        private MainWindow m_pwindow;
+
+        public WebShop(MainWindow pwindow)
         {
+            m_pwindow = pwindow;
             InitializeComponent();
         }
 
         #region window buttons
         private void Closebtn_Click(object sender, RoutedEventArgs e)
         {
+            m_pwindow.Close();
             this.Close();
         }
 
@@ -51,12 +56,11 @@ namespace BaseballCalc
 
         private void Homepage_Click(object sender, MouseButtonEventArgs e)
         {
-            MainWindow mwindow = new MainWindow();
-            mwindow.Left = this.Left;
-            mwindow.Top = this.Top;
-            mwindow.WindowState = this.WindowState;
-            mwindow.cb.SelectedIndex = this.cb.SelectedIndex;
-            mwindow.Show();
+            m_pwindow.Left = this.Left;
+            m_pwindow.Top = this.Top;
+            m_pwindow.WindowState = this.WindowState;
+            m_pwindow.cb.SelectedIndex = this.cb.SelectedIndex;
+            m_pwindow.Show();
             this.Close();
         }
 
@@ -72,7 +76,7 @@ namespace BaseballCalc
             if (typeItem.Content != null)
                 try
                 {
-                    string value = typeItem.Content.ToString();
+                    string? value = typeItem.Content.ToString();
                     switch (value)
                     {
                         case "Blue":

@@ -15,7 +15,7 @@
                 </VisualBrush.Visual>
             </VisualBrush>
         </Grid.Background>
-        <Grid x:Name="Titlebar" Height="28" VerticalAlignment="Top" Background="#FF26268D" MouseDown="Titlebar_Drag">
+        <Grid x:Name="Titlebar" Height="28" VerticalAlignment="Top" Background="#FF26268D" MouseDown="Titlebar_Drag" Margin="0,-2,0,0">
             <Label x:Name="Title" Content="BaseBall Project" HorizontalAlignment="Left" Width="166" Foreground="#FF519AFF" Cursor="Hand" FontFamily="Bodoni MT Black" FontSize="18" TextBlock.TextAlignment="Center" MouseDown="Homepage_Click"/>
             <Button x:Name="Closebtn" Content="X" Margin="0,4,4,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="Closebtn_Click" HorizontalAlignment="Right" Width="29"/>
             <Button x:Name="MiniMaxibtn" Content="◙" Margin="0,4,34,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="MiniMaxibtn_Click" HorizontalAlignment="Right" Width="29"/>
