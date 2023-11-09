@@ -6,9 +6,8 @@
         
         xmlns:local="clr-namespace:BaseballCalc"
         mc:Ignorable="d"
-        Title="HandleSpeler" Height="450" Width="800">
+        Title="HandleSpeler" Height="393" Width="222">
     <Grid>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="38*"/>
             <ColumnDefinition Width="763*"/>

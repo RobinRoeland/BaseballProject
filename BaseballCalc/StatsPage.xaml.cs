@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -30,9 +31,16 @@ namespace BaseballCalc
 
         private void FillTeamList()
         {
-            foreach (Team team in dbcontext.Team.ToList())
+            TeamList.Items.Clear();
+
+            List<Team> teams = dbcontext.Team.Where(team => team.Naam.StartsWith(TeamSearch.Text)).ToList();
+            foreach (Team team in teams)
             {
-                TeamList.Items.Add(team.Id + " - " + team.Naam);
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = team.Naam;
+                item.Resources.Add(team.Naam, team);
+
+                TeamList.Items.Add(item);
             }
         }
 
@@ -110,38 +118,19 @@ namespace BaseballCalc
                         Minimizebtn.Background = new SolidColorBrush(Color.FromRgb(81, 81, 81));
                         break;
                 }
+                cbselecter.IsSelected = true;
             }
         }
         #endregion
 
         private void PlayerSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                PlayerList.Items.Clear();
-
-                List<Speler> spelers = dbcontext.Speler.Where(player => player.Naam.Contains(PlayerSearch.Text) && player.TeamKey == TeamList.SelectedIndex).ToList();
-                foreach (Speler speler in spelers)
-                {
-                    PlayerList.Items.Add(speler.RugNummer + " - " + speler.Naam);
-                }
-            }
-            catch (Exception) { }
+            getplayers();
     }
 
         private void TeamSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                TeamList.Items.Clear();
-
-                List<Team> teams = dbcontext.Team.Where(team => team.Naam.Contains(TeamSearch.Text)).ToList();
-                foreach (Team team in teams)
-                {
-                    TeamList.Items.Add(team.Id + " - " + team.Naam);
-                }
-            }
-            catch (Exception) { }
+            FillTeamList();
         }
 
         private void TeamList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -150,22 +139,23 @@ namespace BaseballCalc
                 getplayers();        
         }
 
-        private void getplayers()
+        public void getplayers()
         {
-            try
+            PlayerList.Items.Clear();
+            ComboBoxItem cbitem = (ComboBoxItem)TeamList.SelectedItem;
+            List<Speler> spelers = dbcontext.Speler.Where(player => 
+            player.TeamKey == ((Team)cbitem.FindResource(cbitem.Content)).Id &&
+            player.Naam.StartsWith(PlayerSearch.Text)).ToList();
+            foreach (Speler speler in spelers)
             {
-                PlayerList.Items.Clear();
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = speler.Naam;
+                item.Resources.Add(speler.Naam, speler);
 
-                int id = int.Parse(TeamList.SelectedValue.ToString().Split('-')[0]);
-                List<Speler> spelers = dbcontext.Speler.Where(speler => speler.TeamKey == id).ToList();
-                foreach (Speler speler in spelers)
-                {
-                    PlayerList.Items.Add(speler.Id + " - " + speler.Naam);
-                }
-
-                EditCb.Visibility = Visibility.Hidden;
+                PlayerList.Items.Add(item);
             }
-            catch (Exception) { }
+
+            EditCb.Visibility = Visibility.Hidden;
         }
 
         private void handlePlayer(object sender, SelectionChangedEventArgs e)
@@ -177,24 +167,38 @@ namespace BaseballCalc
                 switch (value)
                 {
                     case "Edit":
-                        int ide = int.Parse(PlayerList.SelectedValue.ToString().Split('-')[0]);
-                        Speler player = dbcontext.Speler.Where(speler => speler.Id == ide).First();
-                        HandleSpeler handle = new HandleSpeler(dbcontext, player.Id);
+                        ComboBoxItem cbitemE = (ComboBoxItem)PlayerList.SelectedItem;
+                        ComboBoxItem cbteamE = (ComboBoxItem)TeamList.SelectedItem;
+                        Speler player = dbcontext.Speler.Where(speler => speler.Id == ((Speler)cbitemE.FindResource(cbitemE.Content)).Id).First();
+
+                        HandleSpeler handle = new HandleSpeler(dbcontext, this, player.Id);
                         handle.NaamTxBx.Text = player.Naam;
                         handle.RugnummerTxBx.Text = player.RugNummer.ToString();
-                        //handle.TeamCmbBx.SelectedIndex = player.TeamKey;
+
+                        int idx = -1;
+                        int i = 0;
+                        foreach (ComboBoxItem item in handle.TeamCmbBx.Items)
+                        {
+                            if (item.Content == cbteamE.Content)
+                            {
+                                idx = ((Team)cbteamE.FindResource(cbteamE.Content)).Id;
+                                break;
+                            }
+                            i++;
+                        }
+
+                        if(idx > -1)
+                            ((ComboBoxItem)handle.TeamCmbBx.Items.GetItemAt(i)).IsSelected = true;
                         handle.Show();
                         break;
 
                     case "Remove":
-                        int idr = int.Parse(PlayerList.SelectedValue.ToString().Split('-')[0]);
-                        dbcontext.Speler.Remove(dbcontext.Speler.Where(speler => speler.Id == idr).First());
+                        ComboBoxItem cbitemR = (ComboBoxItem)PlayerList.SelectedItem;
+                        dbcontext.Speler.Remove(dbcontext.Speler.Where(speler => speler.Id == ((Speler)cbitemR.FindResource(cbitemR.Content)).Id).First());
                         dbcontext.SaveChanges();
                         break;
                 }
                 emptycomboselect.IsSelected = true;
-
-                getplayers();
             }
         }
 
@@ -210,7 +214,7 @@ namespace BaseballCalc
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new HandleSpeler(dbcontext).Show();
+            new HandleSpeler(dbcontext, this).Show();
         }
     }
 }

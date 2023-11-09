@@ -21,8 +21,9 @@
             <Button x:Name="MiniMaxibtn" Content="◙" Margin="0,4,34,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="MiniMaxibtn_Click" HorizontalAlignment="Right" Width="29"/>
             <Button x:Name="Minimizebtn" Content="-" Margin="0,4,64,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="Minimisebtn_Click" HorizontalAlignment="Right" Width="29"/>
         </Grid>
-        <ComboBox x:Name="cb" IsEditable="True"  MouseEnter="Cb_OnMouseEnter" Margin="0,30,4,0" Grid.RowSpan="2" HorizontalAlignment="Right" Width="19" Height="18" VerticalAlignment="Top" SelectionChanged="cb_SelectionChanged">
-            <ComboBoxItem IsSelected="True">Blue</ComboBoxItem>
+        <ComboBox x:Name="cb" IsEditable="True"  MouseEnter="Cb_OnMouseEnter" Margin="0,39,4,0" HorizontalAlignment="Right" Width="67" Height="20" VerticalAlignment="Top" SelectionChanged="cb_SelectionChanged">
+            <ComboBoxItem Visibility="Collapsed" x:Name="cbselecter" IsSelected="True">Color</ComboBoxItem>
+            <ComboBoxItem>Blue</ComboBoxItem>
             <ComboBoxItem>Gray</ComboBoxItem>
         </ComboBox>
         <TextBox x:Name="TeamSearch" HorizontalAlignment="Left" Height="23" Margin="10,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" TextChanged="TeamSearch_TextChanged"/>
@@ -30,10 +31,10 @@
         </ListView>
         <TextBox x:Name="PlayerSearch" HorizontalAlignment="Left" Height="23" Margin="116,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" TextChanged="PlayerSearch_TextChanged"/>
         <ListView x:Name="PlayerList" HorizontalAlignment="Left" Margin="116,62,0,10" Width="104" SelectionChanged="PlayerList_SelectionChanged"/>
-        <DataGrid x:Name="Stats" Margin="220,39,28,10"/>
-        <Button Content="+" Margin="0,50,4,0" VerticalAlignment="Top" Height="18" Click="Button_Click" HorizontalAlignment="Right" Width="19"/>
-        <ComboBox x:Name="EditCb" Visibility="Hidden" IsEditable="True"  MouseEnter="EditCb_MouseEnter" Margin="0,71,4,0" HorizontalAlignment="Right" Width="19" Height="18" VerticalAlignment="Top" SelectionChanged="handlePlayer">
-            <ComboBoxItem x:Name="emptycomboselect" IsSelected="True" Content=""/>
+        <DataGrid x:Name="Stats" Margin="220,39,76,10"/>
+        <Button Content="+" Margin="0,62,4,0" VerticalAlignment="Top" Height="20" Click="Button_Click" HorizontalAlignment="Right" Width="67"/>
+        <ComboBox x:Name="EditCb" Visibility="Hidden" IsEditable="True"  MouseEnter="EditCb_MouseEnter" Margin="0,85,4,0" HorizontalAlignment="Right" Width="67" Height="20" VerticalAlignment="Top" SelectionChanged="handlePlayer">
+            <ComboBoxItem x:Name="emptycomboselect" Visibility="Collapsed" IsSelected="True" Content="Actions"/>
             <ComboBoxItem Content="Edit"/>
             <ComboBoxItem Content="Remove"/>
         </ComboBox>

@@ -18,13 +18,11 @@ namespace BaseballCalc.Classes
             TeamKey = teamKey;
         }
 
-        [Key]
         public int Id { get; set; }
+
         public int RugNummer { get; set; }
         [Required]
         public string Naam { get; set; }
         public int TeamKey { get; set; }
-        //public Season Season { get; set; }
-        
     }
 }

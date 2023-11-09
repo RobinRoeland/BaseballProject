@@ -9,8 +9,7 @@
         WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="83*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.Background>
             <VisualBrush TileMode="Tile" Viewport="0.8,2.8,0.09,0.15"  AlignmentX="Left" AlignmentY="Top">
@@ -19,19 +18,19 @@
                 </VisualBrush.Visual>
             </VisualBrush>
         </Grid.Background>
-
-        <ComboBox Name="cb" IsEditable="True"  MouseEnter="Cb_OnMouseEnter" Margin="0,30,4,0" Grid.RowSpan="2" HorizontalAlignment="Right" Width="19" Height="18" VerticalAlignment="Top" SelectionChanged="cb_SelectionChanged">
-            <ComboBoxItem IsSelected="True">Blue</ComboBoxItem>
-            <ComboBoxItem>Gray</ComboBoxItem>
-        </ComboBox>
         <Grid x:Name="Titlebar" Height="28" VerticalAlignment="Top" Background="#FF26268D" MouseDown="Titlebar_Drag" Margin="0,-2,0,0">
             <Label x:Name="Title" Content="BaseBall Project" HorizontalAlignment="Left" VerticalAlignment="Center" Width="166" Foreground="#FF519AFF" Cursor="Hand" FontFamily="Bodoni MT Black" FontSize="18" Height="28" TextBlock.TextAlignment="Center"/>
             <Button x:Name="Closebtn" Content="X" Margin="0,4,4,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="Closebtn_Click" HorizontalAlignment="Right" Width="29"/>
             <Button x:Name="MiniMaxibtn" Content="◙" Margin="0,4,34,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="MiniMaxibtn_Click" HorizontalAlignment="Right" Width="29"/>
             <Button x:Name="Minimizebtn" Content="-" Margin="0,4,64,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="Minimisebtn_Click" HorizontalAlignment="Right" Width="29"/>
         </Grid>
+        <ComboBox x:Name="cb" IsEditable="True"  MouseEnter="Cb_OnMouseEnter" Margin="0,39,4,0" HorizontalAlignment="Right" Width="67" Height="20" VerticalAlignment="Top" SelectionChanged="cb_SelectionChanged">
+            <ComboBoxItem Visibility="Collapsed" x:Name="cbselecter" IsSelected="True" Content="Color"/>
+            <ComboBoxItem Content="Blue"/>
+            <ComboBoxItem Content="Gray"/>
+        </ComboBox>
 
-        <Grid Margin="159,28,159,0" Background="WhiteSmoke" Grid.RowSpan="2">
+        <Grid Margin="159,28,159,0" Background="WhiteSmoke">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="195*"/>
                 <ColumnDefinition Width="44*"/>

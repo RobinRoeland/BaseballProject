@@ -21,8 +21,9 @@
             <Button x:Name="MiniMaxibtn" Content="◙" Margin="0,4,34,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="MiniMaxibtn_Click" HorizontalAlignment="Right" Width="29"/>
             <Button x:Name="Minimizebtn" Content="-" Margin="0,4,64,0" VerticalAlignment="Top" Background="#FF304998" BorderBrush="{Binding ElementName=rectangle, Mode=OneWay}" Foreground="#FFBDBDBD" Click="Minimisebtn_Click" HorizontalAlignment="Right" Width="29"/>
         </Grid>
-        <ComboBox Name="cb" IsEditable="True"  MouseEnter="Cb_OnMouseEnter" Margin="0,30,4,0" Grid.RowSpan="2" HorizontalAlignment="Right" Width="19" Height="18" VerticalAlignment="Top" SelectionChanged="cb_SelectionChanged">
-            <ComboBoxItem IsSelected="True">Blue</ComboBoxItem>
+        <ComboBox x:Name="cb" IsEditable="True"  MouseEnter="Cb_OnMouseEnter" Margin="0,39,4,0" HorizontalAlignment="Right" Width="67" Height="20" VerticalAlignment="Top" SelectionChanged="cb_SelectionChanged">
+            <ComboBoxItem Visibility="Collapsed" x:Name="cbselecter" IsSelected="True">Color</ComboBoxItem>
+            <ComboBoxItem>Blue</ComboBoxItem>
             <ComboBoxItem>Gray</ComboBoxItem>
         </ComboBox>
 

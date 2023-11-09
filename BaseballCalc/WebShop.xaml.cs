@@ -95,6 +95,7 @@ namespace BaseballCalc
                             Minimizebtn.Background = new SolidColorBrush(Color.FromRgb(81, 81, 81));
                             break;
                     }
+                    cbselecter.IsSelected = true;
                 }
                 catch (Exception) { }
         }

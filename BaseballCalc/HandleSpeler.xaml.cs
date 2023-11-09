@@ -23,12 +23,14 @@ namespace BaseballCalc
     /// </summary>
     public partial class HandleSpeler : Window
     {
+        private StatsPage pPage;
         private MyDbContext dbcontext;
         private int spelerid;
 
-        public HandleSpeler(MyDbContext dbContext, int id = -1)
+        public HandleSpeler(MyDbContext dbContext, StatsPage parentpage, int id = -1)
         {
             dbcontext = dbContext;
+            pPage = parentpage;
 
             if (id > -1)
                 spelerid = id;
@@ -37,16 +39,24 @@ namespace BaseballCalc
 
             foreach (Team team in dbcontext.Team.ToList())
             {
-                TeamCmbBx.Items.Add(team.Id + " - " + team.Naam);
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = team.Naam;
+                item.Resources.Add(team.Naam, team);
+
+                TeamCmbBx.Items.Add(item);
             }
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            if(spelerid < 0) 
+            bool finished = false;
+            if(spelerid <= 0) 
             {
                 if (RugnummerTxBx.Text.Length > 0 && NaamTxBx.Text.Length > 0 && TeamCmbBx.SelectedIndex != -1)
-                    dbcontext.Speler.Add(new Speler(dbcontext.Speler.ToList().OrderBy(speler => speler.Id).Last().Id + 1, int.Parse(RugnummerTxBx.Text), NaamTxBx.Text, int.Parse(TeamCmbBx.Text.Split('-')[0])));
+                {
+                    dbcontext.Speler.Add(new Speler(dbcontext.Speler.ToList().OrderBy(speler => speler.Id).Last().Id + 1, int.Parse(RugnummerTxBx.Text), NaamTxBx.Text, ((Team)((ComboBoxItem)TeamCmbBx.SelectedItem).FindResource(((ComboBoxItem)TeamCmbBx.SelectedItem).Content)).Id));
+                    finished = true;
+                }
                 else
                     MessageBox.Show("Fill everything in!");
             }
@@ -57,15 +67,21 @@ namespace BaseballCalc
                     Speler speler = dbcontext.Speler.Where(speler => speler.Id == spelerid).First();
                     speler.Naam = NaamTxBx.Text;
                     speler.RugNummer = int.Parse(RugnummerTxBx.Text);
-                    speler.TeamKey = int.Parse(TeamCmbBx.Text.Split('-')[0]);
-                    dbcontext.Speler.Update(speler);   
+                    speler.TeamKey = ((Team)((ComboBoxItem)TeamCmbBx.SelectedItem).FindResource(((ComboBoxItem)TeamCmbBx.SelectedItem).Content)).Id;
+                    dbcontext.Speler.Update(speler);
+                    finished = true;
                 }
                 else
                     MessageBox.Show("Fill everything in!");
             }
 
-            dbcontext.SaveChanges();
-            this.Close();
+            if (finished)
+            {
+                dbcontext.SaveChanges();
+                pPage.getplayers();
+                this.Close();
+                MessageBox.Show("Changes have been made!");
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

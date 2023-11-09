@@ -81,7 +81,7 @@ namespace BaseballCalc
         private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem typeItem = (ComboBoxItem)cb.SelectedItem;
-            if(typeItem.Content != null)
+            if (typeItem.Content != null)
                 try
                 {
                     string? value = typeItem.Content.ToString();
@@ -103,6 +103,7 @@ namespace BaseballCalc
                             Minimizebtn.Background = new SolidColorBrush(Color.FromRgb(81, 81, 81));
                             break;
                     }
+                    cbselecter.IsSelected = true;
                 }
                 catch(Exception){ }
         }
