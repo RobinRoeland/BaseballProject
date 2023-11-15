@@ -14,6 +14,8 @@ namespace BaseballCalc.Classes
     {
         public DbSet<Team> Team { get; set; }
         public DbSet<Speler> Speler { get; set; }
+        public DbSet<Season> Season { get; set; }
+        public DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

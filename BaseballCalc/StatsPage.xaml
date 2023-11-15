@@ -31,16 +31,33 @@
         </ListView>
         <TextBox x:Name="PlayerSearch" HorizontalAlignment="Left" Height="23" Margin="116,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="104" TextChanged="PlayerSearch_TextChanged"/>
         <ListView x:Name="PlayerList" HorizontalAlignment="Left" Margin="116,62,0,10" Width="104" SelectionChanged="PlayerList_SelectionChanged"/>
-        <DataGrid x:Name="Stats" Margin="220,39,76,10"/>
-        <Button Content="+" Margin="0,62,4,0" VerticalAlignment="Top" Height="20" Click="Button_Click" HorizontalAlignment="Right" Width="67"/>
+
+        <TabControl Margin="220,39,76,10">
+            <TabItem Header="Selected Player" Margin="0,0,0,0">
+                <DataGrid x:Name="Stats" Margin="0,0,0,0" IsReadOnly="True">
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                            <EventSetter Event="MouseRightButtonUp" Handler="DataGridRow_MouseRightButtonUp"/>
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="League Stats" Margin="0,0,0,0">
+                <DataGrid x:Name="LeagueStats" Margin="0,0,0,0" IsReadOnly="True"/>
+            </TabItem>
+        </TabControl>
+
+        <Button x:Name="addbtn" Margin="0,62,4,0" VerticalAlignment="Top" Visibility="Hidden" Content="Add Player" Height="20" Click="AddPlayer" HorizontalAlignment="Right" Width="67"/>
+        <ComboBox x:Name="addcombobx" SelectionChanged="handleAdd" Margin="0,62,4,0" Width="67" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Visibility="Hidden">
+            <ComboBoxItem x:Name="Additem"  Visibility="Collapsed" IsSelected="True" Content="Add"/>
+            <ComboBoxItem Content="Player"/>
+            <ComboBoxItem Content="Season"/>
+        </ComboBox>
         <ComboBox x:Name="EditCb" Visibility="Hidden" IsEditable="True"  MouseEnter="EditCb_MouseEnter" Margin="0,85,4,0" HorizontalAlignment="Right" Width="67" Height="20" VerticalAlignment="Top" SelectionChanged="handlePlayer">
             <ComboBoxItem x:Name="emptycomboselect" Visibility="Collapsed" IsSelected="True" Content="Actions"/>
             <ComboBoxItem Content="Edit"/>
             <ComboBoxItem Content="Remove"/>
         </ComboBox>
-
-
-
-
     </Grid>
 </Window>

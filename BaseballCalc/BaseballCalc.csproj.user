@@ -7,10 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="HandleSeason.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="HandleSpeler.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="StatsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StatsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WebShop.xaml.cs">
@@ -18,6 +24,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="HandleSeason.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="HandleSpeler.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -25,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StatsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StatsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WebShop.xaml">

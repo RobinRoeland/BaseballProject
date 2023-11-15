@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -47,6 +49,28 @@ namespace BaseballCalc
             }
         }
 
+        public void fillInForm(Speler speler, StatsPage parent)
+        {
+            ComboBoxItem cbteamE = (ComboBoxItem)parent.TeamList.SelectedItem;
+            NaamTxBx.Text = speler.Naam;
+            RugnummerTxBx.Text = speler.RugNummer.ToString();
+
+            int idx = -1;
+            int i = 0;
+            foreach (ComboBoxItem item in TeamCmbBx.Items)
+            {
+                if (item.Content == cbteamE.Content)
+                {
+                    idx = ((Team)cbteamE.FindResource(cbteamE.Content)).Id;
+                    break;
+                }
+                i++;
+            }
+
+            if (idx > -1)
+                ((ComboBoxItem)TeamCmbBx.Items.GetItemAt(i)).IsSelected = true;
+        }
+
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             bool finished = false;
@@ -88,6 +112,7 @@ namespace BaseballCalc
         {
             this.Close();
         }
+
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

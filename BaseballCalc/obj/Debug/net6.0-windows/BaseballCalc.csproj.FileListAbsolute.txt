@@ -123,3 +123,7 @@ C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\bin\Debug\net6.0-windo
 C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\bin\Debug\net6.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\obj\Debug\net6.0-windows\HandleSpeler.g.cs
 C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\obj\Debug\net6.0-windows\HandleSpeler.baml
+C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\obj\Debug\net6.0-windows\HandleSeason.g.cs
+C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\obj\Debug\net6.0-windows\HandleSeason.baml
+C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\obj\Debug\net6.0-windows\StatsView.g.cs
+C:\Users\Gebruiker\Downloads\BaseballProject\BaseballCalc\obj\Debug\net6.0-windows\StatsView.baml

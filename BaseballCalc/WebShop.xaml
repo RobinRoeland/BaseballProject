@@ -8,6 +8,9 @@
         Title="WebShop" Height="450" Width="800"
         WindowStyle="None">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.Background>
             <VisualBrush TileMode="Tile" Viewport="0.8,2.8,0.09,0.15"  AlignmentX="Left" AlignmentY="Top">
                 <VisualBrush.Visual>
@@ -26,6 +29,8 @@
             <ComboBoxItem>Blue</ComboBoxItem>
             <ComboBoxItem>Gray</ComboBoxItem>
         </ComboBox>
-
+        <DataGrid x:Name="Prods" Margin="10,39,76,10"/>
+        <Button Click="AddCart_Click" Content="Add To cart" Margin="0,65,4,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="66"/>
+        <Button x:Name="Checkoutbtn" Click="Checkout_1" Visibility="Hidden" Content="Checkout" Margin="0,90,4,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="66"/>
     </Grid>
 </Window>

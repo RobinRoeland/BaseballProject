@@ -12,6 +12,8 @@ namespace BaseballCalc
     /// </summary>
     public partial class MainWindow : Window
     {
+        MyDbContext dbcontext = new MyDbContext();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -19,7 +21,7 @@ namespace BaseballCalc
 
         private void WebShopbtn_Click(object sender, RoutedEventArgs e)
         {
-            WebShop webShop = new WebShop(this);
+            WebShop webShop = new WebShop(this, dbcontext);
             webShop.Left = this.Left;
             webShop.Top = this.Top;
             webShop.WindowState = this.WindowState;
@@ -30,7 +32,7 @@ namespace BaseballCalc
 
         private void Statsbtn_Click(object sender, RoutedEventArgs e)
         {
-            StatsPage statspage = new StatsPage(this);
+            StatsPage statspage = new StatsPage(this, dbcontext);
             statspage.Left = this.Left;
             statspage.Top = this.Top;
             statspage.WindowState = this.WindowState;
